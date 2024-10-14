@@ -1,0 +1,13 @@
+How to force fsck to check filesystem after system reboot on Linux when using systemd
+The procedure is as follows:
+1. Edit the /etc/default/grub file on Debian/Ubuntu. CentOS/RHEL/Fedora/Rocky/Alma Linux user edit the /etc/sysconfig/grub file.
+2. Find line that read as GRUB_CMDLINE_LINUX_DEFAULT and append the fsck.mode=force. You may have other config options. Just add it between the quote marks. For example: GRUB_CMDLINE_LINUX_DEFAULT="quiet fsck.mode=force". To force all auto repair option including that may cause damage add the fsck.repair=yes option too.
+3. Then run an sudo update-grub
+4. Reboot the Linux system by tying the sudo reboot
+5. After that system will boot. The system will run fsck on ext4 file systems.
+6. Finally, when you get a shell prompt, make sure you remove the fsck.mode=force config option from the /etc/default/grub file and run the update-grub command again.
+
+Or
+
+sudo touch /forcefsck
+And reboot
