@@ -1,0 +1,6 @@
+Linux shell bulk rename files
+
+for f in *.jpeg; do mv -- "$f" "${f%.jpeg}2042.jpeg”; done
+
+
+f% = remove .js
