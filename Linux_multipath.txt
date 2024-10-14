@@ -1,0 +1,30 @@
+iSCSI com multiparti
+
+1.
+yum update -y && yum install -y net-tools vim device-mapper-multipath iscsi-initiator-utils
+Agora, vamos habilitar os serviços com o comando abaixo:
+2.
+systemctl enable multipathd iscsid
+
+3.
+mpathconf --enable
+multipath -v3 2>&1 | grep udev | grep uid | grep -v failed
+A saída deve ser algo semelhante a isso:
+4.
+multipath -a 36589cfc0000005194fbf6b859bd6cc3b (uuid dos discos: será o mesmo se a LUN for a mesma)
+
+5. Add in /etc/multipath.conf
+multipaths {
+multipath {
+wwid 36589cfc0000005194fbf6b859bd6cc3b (uuid dos discos: será o mesmo se a LUN for a mesma)
+alias iSCSIa (troque esse nome com o que quiser, algo que facilite a saber qual storage/volumes)
+
+6
+systemctl restart multipathd ou systemctl restart multpath.service (em alguns casos é melhor reiniciar o SO)
+
+7.
+multipath -l ou multipath -v3 -l
+
+8.
+fdisk -l (pra checar se o disco agora aparece somente como um único disco.
+
