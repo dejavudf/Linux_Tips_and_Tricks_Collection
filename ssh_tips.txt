@@ -1,0 +1,21 @@
+SSH Tips:
+
+Clone disk via SSH:
+dd if=/dev/hdd | ssh root@destinationIP 'dd of=/folder/disk.img'
+
+run from remote computer
+$ dd if=/dev/sda | gzip -1 - | ssh user@local dd of=image.gz
+
+run from local computer
+$ ssh user@remote "dd if=/dev/sda | gzip -1 -" | dd of=image.gz
+
+Execute command via SSH:
+ssh ubuntu@192.168.0.251 'ls -thalis /'
+cat ~/.ssh/id_rsa.pub | ssh remoteserver 'cat >> .ssh/authorized_keys'
+
+Capture via SSH:
+wireshark: ssh root@remoteserver 'tcpdump -c 1000 -nn -w - not port 22' | wireshark -k -i -
+
+Copy/Compact via SSH:
+cp/tar local to remote: tar -cvj /datafolder | ssh remoteserver "tar -xj -C /datafolder"
+
