@@ -1,0 +1,47 @@
+VNS Server Mint:
+
+x11vnc SERVER - Installing and Setting
+
+Basically this topic covers it all
+
+https://tecadmin.net/setup-x11vnc-serve ... linuxmint/
+
+In short:
+
+Open Terminal and type line by line
+Code: Select all
+sudo apt-get update
+sudo apt-get install x11vnc net-tools
+Then enter and store password
+Code: Select all
+x11vnc -storepasswd
+Start the service with: (change the bath to your home folder, so instead of 'rahul' put the name of your 'useraccount'
+Code: Select all
+sudo x11vnc -auth guess -forever -loop -noxdamage -repeat -rfbauth /home/rahul/.vnc/passwd -rfbport 5900 -shared
+To enable auto-start at system boot-up type
+Code: Select all
+sudo xed /etc/systemd/system/x11vnc.service
+A blank text file should open with sudo privileges. Paste following code into it:
+Code: Select all
+[Unit]
+Description=x11vnc remote desktop server
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/x11vnc -auth guess -forever -loop -noxdamage -repeat -rfbauth /home/rahul/.vnc/passwd -rfbport 5900 -shared
+
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+replace 'rahul' with your own UserAccount name. Click 'Save' and close this document. You will be back in Terminal.
+
+Now continue in Terminal:
+Code: Select all
+sudo systemctl daemon-reload
+sudo systemctl start x11vnc
+sudo systemctl status x11vnc
+If it says it's active type this
+Code: Select all
+sudo systemctl enable x11vnc.service
