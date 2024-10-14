@@ -1,0 +1,5 @@
+Gerar rotas via linux shell:
+
+echo @{1..8}.{1..4}.{0..255}.{0..255}/32# | tr ' ' '\12' > rotas.txt
+sed -i 's/@/ip route /g' rotas.txt
+sed -i 's/#/ null 0/g' rotas.txt
