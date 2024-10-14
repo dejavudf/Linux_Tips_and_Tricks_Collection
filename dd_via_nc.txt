@@ -1,0 +1,7 @@
+dd via NC
+
+Server (file or of):
+nc -l 19000 | bzip2 -d | dd bs=16M of=/dev/sdb
+
+Client (file or if):
+dd bs=16M if=/dev/sda | bzip2 -c | nc server_IP 19000
