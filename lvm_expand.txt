@@ -1,0 +1,11 @@
+LVM (expand volumes with new disks):
+
+1. sudo fdisk -l (check new disks)
+2. sudo lvmdiskscan (scan lvm physical disks)
+3. sudo pvcreate /dev/vdb (add disk to pv)
+4. sudo lvmdiskscan -l (scan lvm logical volumes)
+5. sudo vgextend lvm-vg /dev/vdb (add pv to vg)
+6. sudo lvm lvextend -l +30%FREE /dev/lvm-vg/root (lv extend)
+7. sudo resize2fs -p /dev/mapper/lvm--vg-root (resize fs: Online)
+
+Where lvm-vg is VG Name.
