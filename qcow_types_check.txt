@@ -1,0 +1,50 @@
+TPVM/VSP/VOSS QCOW2 TYPE:
+
+File Extension: qcow2
+
+qemu-img info:
+Version
+File Type: QEMU QCOW2 Image (v3), 10737418240 bytes
+File Info:
+Image Info:
+image: TPVM_Ubuntu20.04_04_14Apr2022.qcow2
+file format: qcow2
+virtual size: 10G (10737418240 bytes)
+disk size: 4.3G
+cluster_size: 65536
+Format specific information:
+    compat: 1.1
+    lazy refcounts: false
+    refcount bits: 16
+    corrupt: false
+
+qemu-img check:
+No errors were found on the image.
+142851/163840 = 87.19% allocated, 90.51% fragmented, 89.71% compressed clusters
+Image end offset: 4642045952
+
+virt-list-partitions -lt
+Virt-list-filesystem -la
+
+/dev/sda1 ext4 9711910912
+/dev/sda2 unknown 1024
+/dev/sda5 swap 1022361600
+/dev/sda device 10737418240
+
+
+Delete vm virsh 
+undefine --nvram "userver-tpvm
+
+modprobe nbd max_part=8
+qemu-nbd --connect=/dev/nbd0 /path/to/your/vm-image.qcow2
+fdisk /dev/nbd0 -l
+mount /dev/nbd0p1 /mnt/your/mountpoint/
+
+
+Disklabel type: dos
+Disk identifier: 0xe654d44f
+Device      Boot    Start      End  Sectors  Size Id Type
+/dev/nbd0p1 *        2048 18970623 18968576    9G 83 Linux
+/dev/nbd0p2      18972670 20969471  1996802  975M  5 Extended
+/dev/nbd0p5      18972672 20969471  1996800  975M 82 Linux swap / Solaris
+
