@@ -1,0 +1,7 @@
+DD with compress
+
+-> Backup:
+sudo dd if=/dev/sdb status=progress | gzip > ./evebck-dez2021.img.gz
+
+-> Restore:
+gzip -dc evebck-dez2021.gz | sudo dd of=/dev/sdb status=progress
