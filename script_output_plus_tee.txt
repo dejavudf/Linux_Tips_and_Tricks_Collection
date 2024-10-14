@@ -1,0 +1,28 @@
+SCRIPT OUTPUT + TEE (linux e Mac)
+
+1. abre um terminal no mac os (hoje em dia o shell default é zhs ao invés de bash)
+
+2. entre na sua pasta home com o comando:
+cd ~
+
+3. crie o arquivo de zshrc
+touch ~/.zshrc
+
+4. edit o arquivo e inclua as linhas abaixo (comamdo para editar: nano ~/.zshrc):
+
+dt=$(date '+%Y_%m_%d_%H_%M_%S');
+alias output='tee -ai ./$dt.txt'
+
+5. ctrl + o (salvar o arquivo) e depois ctrl +x (para sair do nano)
+
+6. feche o terminal atual e abra um novo terminal
+
+7. digite o comando: ls | output
+
+8. cheque se um arquivo .txt com a data e hora atual foi criado
+ls | grep -i txt
+
+9. abra o arquivo e cheque se a saída do seu comando ficou gravado nele
+
+10. Pronto. basta usar o ssh ou qualquer outro comando com um “| + output” para gravar toda saída do comando no arquivo txt.
+comando | output
