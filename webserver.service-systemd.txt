@@ -1,0 +1,13 @@
+[Unit]
+Description=Webserver Daemon in Python
+ConditionPathExists=/share/WEB
+After=network.target
+
+[Service]
+User=webserver
+Type=forking
+ExecStart=/home/webserver/webserver
+ExecStop=/bin/kill -s STOP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

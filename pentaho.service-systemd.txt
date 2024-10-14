@@ -1,0 +1,11 @@
+[Unit]
+Description=Pentho Bi-server
+After=syslog.target
+After=network.target16
+ [Service]
+Type=forking
+User=pentaho
+Group=pentaho
+Environment=JAVA_HOME ExecStart=/opt/pentaho/server/pentaho-server/start-pentaho.sh ExecStartPost=/bin/echo pentaho...end of unitfile ExecStop=/opt/pentaho/server/pentaho-server/stop-pentaho.sh TimeoutSec=300
+[Install]
+WantedBy=multi-user.target

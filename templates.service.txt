@@ -1,0 +1,95 @@
+[Unit]
+Description=This is a template Unit file
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=/path/to/your/app
+User=someUser
+
+[Install]
+WantedBy=multi-user.target
+
+####################################################
+
+#Put me in /lib/systemd/system/
+[Unit]
+Description=My Miscellaneous Service
+After=network.target
+
+[Service]
+Type=simple
+User=nanodano
+WorkingDirectory=/home/nanodano
+ExecStart=/home/nanodano/my_daemon --option=123
+Restart=on-failure # or always, on-abort, etc
+
+[Install]
+WantedBy=multi-user.target
+
+#####################################################
+
+[Unit]
+Description=Consul service mesh Envoy proxy for service %i
+After=network.target consul.service
+Requires=consul.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/consul connect envoy -sidecar-for=%i
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+
+#######################################################
+
+Unit]
+Description=MyCompany Web Server
+After=syslog.target network.target remote-fs.target nss-lookup.target
+Wants=nginx.service
+
+[Service]
+PermissionsStartOnly=true
+Type=notify
+WorkingDirectory=/path/to/netcore/server
+Environment=ASPNETCORE_ENVIRONMENT=production HOME=/home/www-data USER=www-data
+User=www-data
+Group=www-users
+ExecStartPre=/bin/mkdir -p -m 755 /var/run/netcore
+ExecStartPre=/bin/chown -f www-data:www-users /var/run/netcore
+ExecStartPre=/bin/rm -f /path/to/netcore/server/kestrel.sock
+ExecStart=/path/to/netcore/server/MyCompanyServer
+ExecStartPost=/bin/chown -f www-data:www-users /path/to/netcore/server/kestrel.sock
+ExecStartPost=/usr/bin/curl -so /dev/null -XGET --unix-socket /path/to/netcore/server/kestrel.sock http://images
+PIDFile=/var/run/netcore/netcore.pid
+KillMode=process
+KillSignal=SIGINT
+Restart=on-abnormal
+TimeoutSec=60
+SuccessExitStatus=0 SIGINT SIGTERM
+RestartPreventExitStatus=5
+
+[Install]
+WantedBy=multi-user.target
+
+########################################################
+
+# if server is called $SERVER and the mount point is located at /home/$user/mnt/$server, name this unit "home-$user-mnt-$server.automount". for systemwide installation, copy this file to /etc/systemd/system/ and enable the .automount services with "systemctl enable". see https://www.freedesktop.org/software/systemd/man/systemd.automount.html for details.
+
+
+[Unit]
+Description="Automount unit for $SERVER"
+
+[Automount]
+Where=/home/$user/mnt/$server
+# set the permissions for the mounted folder
+DirectoryMode=0775
+#     Configures an idle timeout. Once the mount has been idle for the specified time, systemd will attempt to unmount. Takes a unit-less value in seconds, or a time span value such as "5min 20s". Pass 0 to disable the timeout logic. The timeout is disabled by default.
+TimeoutIdleSec=30min
+
+[Install]
+# install the actual .mount unit file when this unit is enabled (it is useless without it)
+Also=home-$user-mnt-$server.mount
+WantedBy=multi-user.target
