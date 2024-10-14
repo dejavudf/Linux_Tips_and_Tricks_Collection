@@ -1,0 +1,13 @@
+XFCE domain user login:
+
+Edit /etc/lightdm/lightdm.conf and add the following line :
+greeter-show-manual-login=true
+
+hepta.alexsandro.f@hb-9cyjsy2-l:/etc/lightdm/lightdm.conf.d$ cat 70-linuxmint.conf 
+[SeatDefaults]
+user-session=xfce
+greeter-hide-users=false
+greeter-show-manual-login=true
+allow-guest=false
+
+sudo service lightdm restart
