@@ -1,0 +1,25 @@
+ Creating & formatting img files in Linux
+
+1.  Open terminal and type
+
+    dd if=/dev/zero of=file.img bs=1M count=2048
+
+This will create a file called "file.img" in your home directory with a size of 2048 MB (2Gb).
+
+2.  After this image needs to be formatted in some file format (ext4, fat32, ntfs and so on; ext3 for the PirateBox). Now you can either use gparted if you want  some nice GUI or you can use mkfs command:
+
+    mkfs extx (where x is version 2,3 or 4) -F file.img
+
+3. Create Partition(s)
+
+    sudo fdisk ./file.img (p=list part, n=create part, w=write changes)
+
+4.  Mounting the img file ou iso file
+
+    sudo mkdir -p /tmp/mount_tmp/ 
+    sudo mount -o loop,rw,sync ./file.img /tmp/mount_tmp
+    sudo mount -o loop ./img.iso /mnt/iso 
+
+5.  Umonting the img file
+
+    sudo unmount ./file.img ou sudo unmount /tmp/mount_tmp
