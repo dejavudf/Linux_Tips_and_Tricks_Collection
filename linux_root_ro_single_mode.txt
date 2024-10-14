@@ -1,0 +1,3 @@
+Short + tab
+ro single quiet init=/bin/sh
+Mount / -rw -o remount
