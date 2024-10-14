@@ -1,0 +1,80 @@
+BASH SHELL SCRIPTS TIPS:
+
+
+#!/bin/bash -options (-x -i)
+
+MATH:
+
+var1=100;var2=200;var3=$(expr $var1 + $var2);echo "Total: $var3"
+Total: 300
+
+var1=100;var2=200;var3=$[$var1 + $var2];echo "Total: $var3"
+Total: 300
+
+VAR:
+
+var_teste=1
+var_year=$(date +%Y)
+var1=$var2
+
+
+If condition true/false or command (exit 0)
+Then 
+:
+Else
+Fi
+
+If condition/command
+Then 
+:
+Elif condition/command
+Then
+:
+Elif condition/command
+Then
+:
+Else 
+:
+Fi
+
+Comparisons:
+
+String:
+[ x -eq y ] : x=y
+[ x -ge y ] : x>=y
+[ x -gty ] : x>y
+[ x -le y ] : x<=y
+[ x -lt y ] : x<y
+[ x -ne y ] : x<>t
+
+Numeric:
+
+[ x = y ] : x=y
+[ x !=y ] : x<>y
+[ x < t] : x<y
+[ x > y ] : x>y
+[ -n y ] : not zero
+[ -z y] : zero
+
+
+File teste:
+
+If [ -d $file ]
+Then
+
+-d file = exist and dir
+-e file = exist
+-f file = exist and file
+-r file = exist and perm read
+-s file = exist and not empty
+-w file = exist andperm write
+-x file = exist and perm exec
+-O file =  exist and owned by user
+-G file = exist and owned by group
+file1 -nt file2 = file1 newer file2
+file1 -ot file2 = file1 older file2
+
+Conditional Compound:
+
+[ condition ] && [ condition ] = AND
+[ condition ] || [ condition ] = OR
