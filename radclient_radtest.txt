@@ -1,0 +1,16 @@
+Radclient and Radtest
+
+radtest -4 -t mschap teste.wifi.vpn 123456 10.84.10.28 1812 password
+radtest -4 -t mschap teste.wifi.vpn 123456 10.100.0.8 1812 password
+radtest -4 -t mschap teste.wifi.vpn 123456 10.84.10.28 1812 password
+radtest -4 -t mschap teste.wifi.vpn 123456 10.100.0.8 1812 password
+
+radtest -4 -t eap-md5 teste.wifi.vpn 123456 10.100.0.8 1812 password
+radtest -4 -t eap-md5 teste.wifi.vpn 123456 10.84.10.21 1812 password
+radtest -4 -t eap-md5 teste.wifi.vpn 123456 10.84.10.28 1812 password
+radtest -4 -t eap-md5 teste.wifi.vpn 123456 10.100.0.8 1812 password
+radtest -4 -t eap-md5 teste.wifi.vpn 123456 10.84.10.28 1812 password
+radtest -4 -t eap-md5 teste.wifi.vpn 123456 10.100.0.8 1812 password
+radtest -4 -t eap-md5 teste.wifi.vpn 123456 10.84.10.28 1812 password
+
+echo "Message-Authenticator = 0x00" | radclient 10.84.10.28:1812 1 password
