@@ -1,0 +1,7 @@
+Curl insecure
+
+curl --insecure https://site.com
+wget --no-check-certificate -r https://site.com (download all site)
+
+
+sed -i 's/old-text/new-text/g' input.txt.
