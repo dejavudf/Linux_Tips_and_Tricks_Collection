@@ -1,0 +1,12 @@
+SCRIPT OUTPUT + TEE (linux e Mac)
+
+mac:
+~/.zshrc
+linux:
+~/.bashrc
+
+add:
+dt=$(date '+%Y_%m_%d_%H_%M_%S');
+alias output='tee -ai ./$dt.txt'
+
+ls | output
