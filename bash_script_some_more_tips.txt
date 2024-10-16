@@ -95,3 +95,43 @@ do
 	continue (skip commands above and go back do do
 done
 
+Linux Shell Scripts: for
+
+for i in *; do qemu-img info "$i"; done
+for i in *.txt; do echo "hello $i"; done
+for i in teste* ; do cp $i /tmp/ ; done
+
+while read i; do echo $i; done < teste.txt
+
+for i in $(cat peptides.txt); do echo $I; done
+
+sort -d teste.txt | uniq -d
+
+cp -i alex.txt ../teste2/ <<< "n
+
+for z in *.zip; do cp -i $z /userdata/roms/neogeo <<< "n; done
+for word in $(cat peptides.txt); do echo $word; done
+
+i=0
+while [ $i -lt 10 ]; do echo "valor: $i" ; i=$[$i+1]; done;
+valor: 0
+valor: 1
+valor: 2
+valor: 3
+valor: 4
+valor: 5
+valor: 6
+valor: 7
+valor: 8
+valor: 9
+
+while read -r line; 
+do 
+   echo "$line" ;
+done < input.file
+
+cat /etc/passwd | while read LREAD
+do
+    echo ${LREAD}
+done
+
