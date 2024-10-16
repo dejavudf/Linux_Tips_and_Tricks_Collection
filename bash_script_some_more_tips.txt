@@ -78,3 +78,20 @@ Conditional Compound:
 
 [ condition ] && [ condition ] = AND
 [ condition ] || [ condition ] = OR
+
+
+Test var zero or null:
+
+If [ -n $VAR ] # var is not null
+
+If [ -z $VAR ] # var is empty 
+
+
+Looping Specific Commands:
+
+while/until
+do
+	break (get out single looping). One break is needed for each nested looping
+	continue (skip commands above and go back do do
+done
+
