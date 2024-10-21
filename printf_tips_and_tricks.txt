@@ -106,7 +106,28 @@ printf "%-15s %-10s %10s\n" "Jane Smith" 25 "London"
 
 This will produce a table with columns for Name, Age, and City, along with a separator line.
 
-These practical examples demonstrate the real-world applications of printf in bash scripting. By leveraging its formatting capabilities, you can create visually appealing output that meets your specific needs.
-Tips And Best Practices:
+Conversion specifications (e.g. to format string or format number)
+
+    %s - to treat as a string
+    %c - to treat as a single character
+    %f - to treat as a floating number
+    %d - to treat as a signed integer
+    %u - to treat as an unsigned integer
+    %% - to print the percentage symbol
+    %X - to print with X character wide widths specified
+    %.X - to print with a precision modifier of X characters
+    %- - to print left-justified. note: by default it is right-justified.
+
+format specifiers: string(s) that may contain one or more of:
+
+    Normal characters
+    Backslash-escaped characters
+    \b - backspace character
+    \n - newline character
+    \t - horizontal tab space
+    \v - vertical tab space
+    \” - quotation character
+    \\ - backslash character
+
 
 
