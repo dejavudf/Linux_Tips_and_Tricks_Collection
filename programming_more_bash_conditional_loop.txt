@@ -51,3 +51,9 @@ select name [in list]
 do
   statements that can use $name
 done
+sample: 
+select character in Sheldon Leonard Penny Howard Raj
+do
+    echo "Selected character: $character"
+done
+
