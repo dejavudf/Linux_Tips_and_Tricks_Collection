@@ -65,6 +65,7 @@ until condition; do
   statements
 done
 sample:
+var_count=1
 until [ $var_count == 10 ]
 do
   echo $var_count
