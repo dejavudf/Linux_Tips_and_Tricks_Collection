@@ -7,14 +7,12 @@ then
 [else
 fi
 sample:
-
-
---> FOR type x to y
-
-for x := 1 to 10 do
-begin
-  statements
-end
+if [ "$var_test" == "1" ]
+then
+echo $var_test
+else 
+echo "erro"
+fi
 
 --> For type in list
 
