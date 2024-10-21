@@ -33,6 +33,11 @@ for (( initialisation ; ending condition ; update ))
 do
   statements...
 done
+sample:
+for ((i=1;i<=11;i++))
+do
+        echo "$i"
+done
 
 --> Case (menu)
 case expression in
