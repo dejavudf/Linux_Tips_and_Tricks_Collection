@@ -5,7 +5,9 @@ then
 [elif condition
   then statements...]
 [else
-fista
+fi
+sample:
+
 
 --> FOR type x to y
 
@@ -19,6 +21,11 @@ end
 for name [in list]
 do
 statements that can use $name
+done
+sampple:
+for i in $(ls ./)
+do 
+  echo $i
 done
 
 --> For all in one line
@@ -39,6 +46,13 @@ esac
 --> while (condition is true)
 while condition; do
   statements
+done
+sample: 
+var_count=1
+while [ $var_count -lt 11 ]
+do
+  echo $var_count
+  var_count=$((var_count+1))
 done
 
 --> until (condition is false)
