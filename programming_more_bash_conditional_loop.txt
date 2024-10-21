@@ -1,1 +1,47 @@
+--> IF
+if condition
+then
+  statements
+[elif condition
+  then statements...]
+[else
+fista
 
+--> FOR type x to y
+
+for x := 1 to 10 do
+begin
+  statements
+end
+
+--> For type in list
+
+for name [in list]
+do
+statements that can use $name
+done
+
+--> For all in one line
+for (( initialisation ; ending condition ; update ))
+do
+  statements...
+done
+
+--> Case
+case expression in
+  pattern1 )
+    statements ;;
+  pattern2 )
+    statements ;;
+  ...
+esac
+
+--> while (condition is true)
+while condition; do
+  statements
+done
+
+--> until (condition is false)
+until condition; do
+  statements
+done
