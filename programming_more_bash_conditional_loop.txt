@@ -46,7 +46,7 @@ until condition; do
   statements
 done
 
---> select
+--> select (menu)
 select name [in list]
 do
   statements that can use $name
