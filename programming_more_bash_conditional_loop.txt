@@ -64,6 +64,12 @@ done
 until condition; do
   statements
 done
+sample:
+until [ $var_count == 10 ]
+do
+  echo $var_count
+  var_count=$((var_count+1))
+done
 
 --> select (menu)
 select name [in list]
