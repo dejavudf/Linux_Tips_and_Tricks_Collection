@@ -136,5 +136,74 @@ select opt in add subtract multiply divide quit; do
   esac
 done
 
+--> More Tips and Tips
+
+#!/bin/bash
+if [ 1 == 2 ]
+then
+echo "teste"
+else
+echo "alex"
+fi
+
+a=1
+b=2
+if [[ a > b ]]
+then
+echo "A maior do que B"
+elif [[ b > a ]]
+then
+echo "B maior do que A"
+else
+echo "B igual a A"
+
+
+echo "Script para comparar dois números:"
+echo "Digite um número entre 0, 1 e 2:"
+read a
+case $a in
+    "0") echo "zero";;
+    "1") echo "um - ímpar";;
+    "2") echo "dois - par";;
+esac
+
+#!/bin/bash
+echo "digite o primeiro número:"
+read um
+echo "digite o segundo número:"
+read dois
+if [[ $um > $dois ]]
+then
+echo "1 maior que 2"
+elif [[ $um < $dois ]]
+then
+echo "2 maior que 1"
+else [[ $um == $dois ]]
+echo "1 igual a 2"
+fi
+
+#!/bin/bash
+for var_file in $1; do md5sum $var_file; done
+if [[ $? == 0 ]]
+then
+echo "Sucesso!"
+else
+echo "erro no comando"
+fi
+
+#!/bin/bash
+var_dt=$(date '+Data_%d_%m_%Y_Hora_%H_%M_%S')
+echo "script name is $0"
+ping $1 -c $2 -R | while read pong; do echo "$(date): $pong";done | tee $1_$var_dt.txt
+
+#!/bin/bash
+tempo=$1
+while [ $tempo -le 10 ]
+do
+ping -c $tempo 192.168.0.1
+exit 0
+done
+
+
 
 
