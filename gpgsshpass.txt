@@ -1,0 +1,13 @@
+Using an Encrypted File with GPG
+Instead of typing your password on the command line, store it in an encrypted GPG file. 
+
+The New Stack
+Create a password file:
+echo "YourPassword" > ~/.sshpass
+Encrypt the file with GPG:
+gpg -c ~/.sshpass
+Remove the unencrypted original file:
+rm -rf ~/.sshpass
+Run your sshpass command securely by passing the decrypted password through a secure FIFO stream:
+gpg -d -q ~/.sshpass.gpg > fifo; sshpass -f fifo ssh user@server; rm -f fifo 
+VAR_PASS=$(gpg -d -q ~/.sshpass.gpg)
